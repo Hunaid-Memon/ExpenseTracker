@@ -15,13 +15,11 @@ const AlertState = props => {
     const [state, dispatch] = useReducer(alertReducer, initialState)
     
     // Set Alert
-    const setAlert = (msg, type, timeout = 1200) => {
+    const setAlert = ( msg, type, timeout = 3000 ) => {
         const id = uuidv4();
         dispatch({ type: SET_ALERT, payload: { msg, type, id } });
 
-        setTimeout(() => {
-            dispatch({ msg, type, id })
-        }, timeout)
+       setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout)
     }
 
     return (
